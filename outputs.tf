@@ -6,7 +6,6 @@
 #    \____/ \__,_|\__| .__/ \__,_|\__|___/
 #                    | |                  
 #                    |_|                  
-#
 
 output "rke_ec2_data" {
   value = var.ec2_data

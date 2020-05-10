@@ -52,3 +52,8 @@ variable "ec2_instance_type" {
   type = string
   default = "t2.xlarge"
 }
+
+variable "all_cidr_block" {
+  type = string
+  default = "0.0.0.0/0" # All possible IP address range 
+}

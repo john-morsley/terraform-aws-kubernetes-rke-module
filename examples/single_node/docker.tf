@@ -7,9 +7,13 @@
 
 # https://www.terraform.io/docs/providers/null/resource.html
 
-resource "null_resource" "install-docker" {
+resource "null_resource" "install-docker-node-1" {
 
-  depends_on = [module.node-1]
+  depends_on = [
+    module.vpc,
+    module.node-1,
+    module.allow-ssh
+  ]
 
   connection {
     type        = "ssh"
@@ -35,9 +39,11 @@ resource "null_resource" "install-docker" {
 
 # https://www.terraform.io/docs/providers/null/resource.html
 
-resource "null_resource" "is-docker-ready" {
+resource "null_resource" "is-docker-ready-node-1" {
 
-  depends_on = [null_resource.install-docker]
+  depends_on = [
+    null_resource.install-docker-node-1
+  ]
 
   connection {
     type        = "ssh"

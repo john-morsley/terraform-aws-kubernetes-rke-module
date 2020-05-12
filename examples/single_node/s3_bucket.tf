@@ -11,9 +11,5 @@ module "s3_bucket" {
   #source = "john-morsley/terraform-aws-vpc"
 
   name = local.bucket_name
-
-//  tags = {
-//    Owner = "john-doe"
-//  }
-
+  
 }

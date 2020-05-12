@@ -16,7 +16,7 @@
 module "allow-ssh" {
 
   source = "./../../../terraform-aws-security-group"
-  #source = "john-morsley/terraform-aws-vpc"
+  #source = "john-morsley/terraform-aws-security-group"
 
   name = "docker"
   description = "To allow SSH to set up Docker."
@@ -39,8 +39,8 @@ module "allow-ssh" {
     cidr_blocks = [ var.all_cidr_block ]
   }]
 
-  #tags = {
-  #  Owner = "john-doe"
-  #}
-
+  tags = {
+    "${local.cluster_id}" = "owned"
+  }
+  
 }

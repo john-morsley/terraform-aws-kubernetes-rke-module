@@ -20,7 +20,7 @@
 module "single-node-cluster" {
 
   source = "./../../../terraform-aws-kubernetes-cluster"
-  #source = "john-morsley/terraform-aws-vpc"
+  #source = "john-morsley/terraform-aws-kubernetes-cluster"
 
   cluster_name = local.cluster_name 
   
@@ -35,9 +35,9 @@ module "single-node-cluster" {
     private_ip = module.node-1.private_ip
     encoded_private_key = module.node-1.encoded_private_key
   }]
-  
-//  tags = {
-//    Owner = "john-doe"
-//  }
 
+  mock_depends_on = [
+    null_resource.is-docker-ready-node-1
+  ]
+  
 }

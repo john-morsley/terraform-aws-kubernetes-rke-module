@@ -5,11 +5,7 @@
 #   | |__| | |_| | |_| |_) | |_| | |_\__ \
 #    \____/ \__,_|\__| .__/ \__,_|\__|___/
 #                    | |                  
-#                    |_|                  
-
-//output "rke_ec2_data" {
-//  value = module.single-node-cluster.rke_ec2_data
-//}
+#                    |_|
 
 output "private_ip" {
   value = module.node-1.private_ip
@@ -26,7 +22,6 @@ output "public_ip" {
 output "public_dns" {
   value = module.node-1.public_dns
 }
-
 
 output "ssh_command" {
   value = module.node-1.ssh_command

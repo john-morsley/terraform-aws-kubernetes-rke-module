@@ -1,4 +1,6 @@
-﻿module "node-1" {
+﻿
+
+module "node-1" {
 
   source = "./../../../terraform-aws-ec2"
 
@@ -14,5 +16,7 @@
   public_subnet_id = module.vpc.public_subnet_id
 
   security_group_ids = [ module.allow-ssh.id ]
+
+  tags = local.cluster_id_tag
   
 }

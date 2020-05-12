@@ -30,10 +30,11 @@ resource "rke_cluster" "this" {
   }
 
   # Important!
-  # This requires that several tags have been added to various resources:
-  #
-  #
-  #
+  # This parameter requires that a special tag has been added the following resources:
+  # 1 - Each node (EC2) requires the tag.
+  # 2 - The Subnet
+  # 3 - The Security Group
+  # The special tag is: "kubernetes.io/cluster/[Cluster Name]": "owned"
   cloud_provider {
     name = "aws"
   }

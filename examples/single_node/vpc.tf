@@ -15,8 +15,6 @@ module "vpc" {
   cidr_block = var.vpc_cidr_block
   public_subnets = var.vpc_public_subnets
 
-  public_subnet_tags = {
-    "${local.cluster_id}" = "owned"
-  }
+  public_subnet_tags = local.cluster_id_tag
 
 }

@@ -8,6 +8,4 @@ What do we need for a Kubernetes cluster?
 4 - Keys for the EC2 instance
 5 - An AMI for the EC2 instance
 6 - EC2 instance with Docker
-7 - RKE via Helm
-8 - Route 53
-
+7 - RKE

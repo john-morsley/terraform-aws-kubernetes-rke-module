@@ -39,8 +39,6 @@ module "allow-ssh" {
     cidr_blocks = [ var.all_cidr_block ]
   }]
 
-  tags = {
-    "${local.cluster_id}" = "owned"
-  }
+  tags = local.cluster_id_tag
   
 }

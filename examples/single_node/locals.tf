@@ -11,6 +11,8 @@ locals {
 
   cluster_name = "single-node-example-${random_pet.this.id}"
 
-  cluster_id = "kubernetes.io/cluster/${local.cluster_name}"
+  cluster_id_tag = {
+    "kubernetes.io/cluster/${local.cluster_name}" = "owned" 
+  }
   
 }

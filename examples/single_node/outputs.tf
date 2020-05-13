@@ -11,6 +11,10 @@ output "private_ip" {
   value = module.node-1.private_ip
 }
 
+output "public_key" {
+  value = base64decode(module.node-1.encoded_public_key)
+}
+
 output "private_key" {
   value = base64decode(module.node-1.encoded_private_key)
 }
@@ -25,4 +29,12 @@ output "public_dns" {
 
 output "ssh_command" {
   value = module.node-1.ssh_command
+}
+
+output "export_kubeconfig_command" {
+  value = module.single-node-cluster.export_kubeconfig_command
+}
+
+output "kubectl_kubeconfig_command" {
+  value = module.single-node-cluster.kubectl_kubeconfig_command
 }

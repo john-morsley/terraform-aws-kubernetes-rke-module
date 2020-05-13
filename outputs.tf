@@ -10,3 +10,11 @@
 output "rke_ec2_data" {
   value = var.ec2_data
 }
+
+output "export_kubeconfig_command" {
+  value = "export KUBECONFIG=${local.kube_config_filename}"
+}
+
+output "kubectl_kubeconfig_command" {
+  value = "kubectl get nodes --kubeconfig=${local.kube_config_filename}"
+}

@@ -29,7 +29,10 @@ resource "rke_cluster" "this" {
 
   }
 
-  # Important!
+  ############ #
+  # Important! #
+  # ############
+  #
   # This parameter requires that a special tag has been added the following resources:
   # 1 - Each node (EC2) requires the tag.
   # 2 - The Subnet
@@ -39,4 +42,6 @@ resource "rke_cluster" "this" {
     name = "aws"
   }
 
+  depends_on = [ var.mock_depends_on ]
+  
 }

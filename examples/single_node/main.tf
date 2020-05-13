@@ -37,6 +37,9 @@ module "single-node-cluster" {
   }]
 
   mock_depends_on = [
+    module.vpc.id,
+    module.allow-ssh.id,
+    module.node-1.id,
     null_resource.is-docker-ready-node-1
   ]
   

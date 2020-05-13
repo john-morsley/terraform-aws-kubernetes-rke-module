@@ -12,8 +12,9 @@ module "vpc" {
   
   name = var.vpc_name
   
-  cidr_block = var.vpc_cidr_block
-  public_subnets = var.vpc_public_subnets
+  vpc_cidr = var.vpc_cidr
+  public_subnet_cidrs = var.public_subnet_cidrs
+  private_subnet_cidrs = var.private_subnet_cidrs
 
   public_subnet_tags = local.cluster_id_tag
 

@@ -24,14 +24,19 @@ variable "vpc_name" {
   default = "single-node-kubernetes-cluster"
 }
 
-variable "vpc_cidr_block" {
+variable "vpc_cidr" {
   type = string
   default = "10.0.0.0/16" # 65,531 (65,536 possible - 5 reserved by AWS)
 }
 
-variable "vpc_public_subnets" {
+variable "public_subnet_cidrs" {
   type = list(string)
-  default = ["10.0.0.0/24"] # 251 (256 possible - 5 reserved by AWS)
+  default = ["10.0.1.0/24"] # 251 (256 possible - 5 reserved by AWS)
+}
+
+variable "private_subnet_cidrs" {
+  type = list(string)
+  default = ["10.0.2.0/24"] # 251 (256 possible - 5 reserved by AWS)
 }
 
 # IAM Role
@@ -51,9 +56,4 @@ variable "ec2_name" {
 variable "ec2_instance_type" {
   type = string
   default = "t2.xlarge"
-}
-
-variable "all_cidr_block" {
-  type = string
-  default = "0.0.0.0/0" # All possible IP address range 
 }

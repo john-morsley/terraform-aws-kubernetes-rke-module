@@ -14,5 +14,7 @@ locals {
   cluster_id_tag = {
     "kubernetes.io/cluster/${local.cluster_name}" = "owned" 
   }
+
+  all_cidr_block = "0.0.0.0/0" # All possible IP address range
   
 }

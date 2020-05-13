@@ -1,4 +1,9 @@
-﻿
+﻿#      _   _           _        __ 
+#     | \ | |         | |      /_ |
+#     |  \| | ___   __| | ___   | |
+#     | . ` |/ _ \ / _` |/ _ \  | |
+#     | |\  | (_) | (_| |  __/  | |
+#     |_| \_|\___/ \__,_|\___|  |_|
 
 module "node-1" {
 
@@ -9,7 +14,7 @@ module "node-1" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.ec2_instance_type
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id = module.vpc.id
 
   iam_instance_profile_name = module.iam-role.instance_profile_name
 

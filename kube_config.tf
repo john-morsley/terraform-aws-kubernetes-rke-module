@@ -7,7 +7,7 @@
 #                                                    __/ | 
 #                                                   |___/  
 
-resource "local_file" "kube_cluster_yaml" {
+resource "local_file" "kube-config-yaml" {
   filename = "./${local.kube_config_filename}"
   content  = rke_cluster.this.kube_config_yaml
 }

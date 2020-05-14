@@ -24,4 +24,8 @@ module "node-1" {
 
   tags = local.cluster_id_tag
   
+  bucket_name = local.bucket_name
+  
+  mock_depends_on = [ module.s3_bucket.id ]
+  
 }

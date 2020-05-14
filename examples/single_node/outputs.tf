@@ -38,3 +38,7 @@ output "export_kubeconfig_command" {
 output "kubectl_kubeconfig_command" {
   value = module.single-node-cluster.kubectl_kubeconfig_command
 }
+
+output "bucket_name" {
+  value = local.bucket_name
+}

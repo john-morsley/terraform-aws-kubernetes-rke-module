@@ -10,7 +10,7 @@ module "vpc" {
   source = "./../../../terraform-aws-vpc"
   #source = "john-morsley/terraform-aws-vpc"
   
-  name = var.vpc_name
+  name = local.vpc_name
   
   vpc_cidr = var.vpc_cidr
   public_subnet_cidrs = var.public_subnet_cidrs

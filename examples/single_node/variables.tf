@@ -17,11 +17,18 @@ variable "region" {
   default = "eu-west-2" # London
 }
 
+# Cluster
+
+variable "name" {
+  type = string
+  default = "single-node-kubernetes-cluster-example"
+}
+
 # VPC
 
 variable "vpc_name" {
   type = string
-  default = "single-node-kubernetes-cluster"
+  default = "single-node-kubernetes-cluster-example"
 }
 
 variable "vpc_cidr" {

@@ -7,8 +7,6 @@
 
 locals {
 
-  //bucket_name = replace(var.cluster_name, ".", "-")
-  
-  kube_config_filename = "kube_config_cluster.yml"  
+  kube_config_filename = "${var.cluster_name}-kube-config-cluster.yml"  
   
 }

@@ -16,12 +16,12 @@
 # 1 --> KUBE_CONFIG_NAME (Required): The name kubeconfig file.
 # 2 --> TIMEOUT, in minutes (Optional, default: 15)
         
-KUBE_CONFIG_NAME=$1
-if [[ -z "${KUBE_CONFIG_NAME}" ]]; then
-    echo "No KUBE_CONFIG_NAME supplied!"
+KUBE_CONFIG=$1
+if [[ -z "${KUBE_CONFIG}" ]]; then
+    echo "No KUBE_CONFIG supplied!"
     exit 666
 fi
-echo "NAME: ${KUBE_CONFIG_NAME}"
+echo "NAME: ${KUBE_CONFIG}"
 
 TIMEOUT=$2
 if [[ -z "${TIMEOUT}" ]]; then
@@ -34,7 +34,7 @@ echo 'IS CLUSTER READY...?'
 
 #set -x
 
-export KUBECONFIG=$(pwd)/${KUBE_CONFIG_NAME}
+export KUBECONFIG=${KUBE_CONFIG}
 
 is_cluster_ready () {
 

@@ -19,7 +19,7 @@ resource "null_resource" "is-cluster-ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "bash ${path.module}/is_cluster_ready.sh ${local.kube_config_filename}"
+    command = "bash ${path.module}/is_cluster_ready.sh ${path.cwd}/k8s/${local.kube_config_filename}"
   }
 
 }

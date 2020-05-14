@@ -7,13 +7,14 @@
 
 # SIMPLE STORAGE SERVICE
 
-resource "aws_s3_bucket_object" "kube-config-yaml" {
+module "kube-config-yaml" {
 
-  //depends_on = [aws_s3_bucket.cluster]
+  source = "./../terraform-aws-s3-object"
+  #source = "john-morsley/terraform-aws-s3-object"
 
-  bucket     = var.bucket_name
-  key        = "/${local.kube_config_filename}"
-  content    = rke_cluster.this.kube_config_yaml
-  content_type = "text/*"
+  bucket_name = var.bucket_name
 
+  key     = "/${local.kube_config_filename}"
+  content = rke_cluster.this.kube_config_yaml
+  
 }

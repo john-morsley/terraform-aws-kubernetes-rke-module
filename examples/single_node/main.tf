@@ -26,8 +26,6 @@ module "single-node-cluster" {
   
   bucket_name = local.bucket_name
   
-  folder = "single-node-cluster"
-  
   ec2_data = [{
     user = "ubuntu"
     role = ["controlplane", "etcd", "worker"]

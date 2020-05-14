@@ -8,6 +8,6 @@
 #                                                   |___/  
 
 resource "local_file" "kube-config-yaml" {
-  filename = "./${local.kube_config_filename}"
+  filename = "./k8s/${local.kube_config_filename}"
   content  = rke_cluster.this.kube_config_yaml
 }

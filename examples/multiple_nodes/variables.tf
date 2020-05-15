@@ -21,7 +21,7 @@ variable "region" {
 
 variable "name" {
   type = string
-  default = "multiple-node-example"
+  default = "multiple-node-kubernetes-cluster-example"
 }
 
 # VPC

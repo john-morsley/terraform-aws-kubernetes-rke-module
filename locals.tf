@@ -7,6 +7,6 @@
 
 locals {
 
-  kube_config_filename = "${var.cluster_name}-kube-config-cluster.yml"  
+  kube_config_filename = "kube-config.yml"  
   
 }

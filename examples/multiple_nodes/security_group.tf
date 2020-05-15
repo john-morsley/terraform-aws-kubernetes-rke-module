@@ -19,25 +19,40 @@ module "allow-ssh" {
   #source = "john-morsley/terraform-aws-security-group"
 
   name = local.name
-  description = "To allow SSH to set up Docker."
+  description = "Ports for SSH and RKE."
 
   vpc_id = module.vpc.id
 
   ingress = [
     {
-      description = "Allow SSH"
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      cidr_blocks = [ local.all_cidr_block ]
-    },
-    {
-      description = "Allow KupeAPI"
-      from_port   = 6443
-      to_port     = 6443
-      protocol    = "tcp"
-      cidr_blocks = [ local.all_cidr_block ]
+      description = "Allow All"
+      from_port = 0
+      to_port = 0
+      protocol = "-1"
+      cidr_blocks = [
+      local.all_cidr_block]
     }
+//    {
+//    description = "Allow SSH"
+//    from_port   = 22
+//    to_port     = 22
+//    protocol    = "tcp"
+//    cidr_blocks = [ local.all_cidr_block ]
+//    },
+//    {
+//      description = "Allow KupeAPI (RKE)"
+//      from_port   = 6443
+//      to_port     = 6443
+//      protocol    = "tcp"
+//      cidr_blocks = [ local.all_cidr_block ]
+//    },
+//    {
+//      description = "Allow etcd"
+//      from_port   = 2379
+//      to_port     = 2380
+//      protocol    = "tcp"
+//      cidr_blocks = [ local.all_cidr_block ]
+//    }
   ]
   
   egress = [{

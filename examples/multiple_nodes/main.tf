@@ -17,7 +17,7 @@
 #               | |____| | |_| \__ \ ||  __/ |   
 #                \_____|_|\__,_|___/\__\___|_|   
 
-module "single-node-cluster" {
+module "multiple-node-cluster" {
 
   source = "./../../../terraform-aws-kubernetes-cluster"
   #source = "john-morsley/terraform-aws-kubernetes-cluster"
@@ -26,19 +26,30 @@ module "single-node-cluster" {
   
   bucket_name = local.bucket_name
   
-  ec2_data = [{
-    user = "ubuntu"
-    role = ["controlplane", "etcd", "worker"]
-    public_ip = module.node-1.public_ip
-    private_ip = module.node-1.private_ip
-    encoded_private_key = module.node-1.encoded_private_key
-  }]
+  ec2_data = [
+    {
+      user = "ubuntu"
+      role = ["controlplane", "etcd", "worker"]
+      public_ip = module.node-1.public_ip
+      private_ip = module.node-1.private_ip
+      encoded_private_key = module.node-1.encoded_private_key
+    },
+    {
+      user = "ubuntu"
+      role = ["controlplane", "etcd", "worker"]
+      public_ip = module.node-2.public_ip
+      private_ip = module.node-2.private_ip
+      encoded_private_key = module.node-2.encoded_private_key
+    }
+  ]
 
   mock_depends_on = [
     module.vpc.id,
     module.allow-ssh.id,
     module.node-1.id,
-    null_resource.is-docker-ready-node-1
+    module.node-2.id,
+    null_resource.is-docker-ready-node-1,
+    null_resource.is-docker-ready-node-2
   ]
   
 }

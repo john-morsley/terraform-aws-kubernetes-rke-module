@@ -11,12 +11,13 @@ locals {
   
   bucket_name = "${var.name}-${random_pet.this.id}"
 
-  name = "single-node-example"
+  name = "multiple-node-example"
 
   cluster_id_tag = {
     "kubernetes.io/cluster/${local.name}" = "owned" 
   }
   
-  node_name = "${var.ec2_name}-1-${random_pet.this.id}"
-
+  node_1_name = "${var.ec2_name}-1"
+  node_2_name = "${var.ec2_name}-2"
+  
 }

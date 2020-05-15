@@ -21,7 +21,7 @@ variable "region" {
 
 variable "name" {
   type = string
-  default = "single-node-example"
+  default = "multiple-node-example"
 }
 
 # VPC

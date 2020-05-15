@@ -1,11 +1,4 @@
 # A Single Node cluster
 
-What do we need for a Kubernetes cluster?
+This is an example of a single node kubernetes cluster on AWS using RKE (Rancher Kubernetes Engine).
 
-1 - VPC
-2 - IAM Role for the EC2 instance
-3 - An S3 Bucket for storage
-4 - Keys for the EC2 instance
-5 - An AMI for the EC2 instance
-6 - EC2 instance with Docker
-7 - RKE

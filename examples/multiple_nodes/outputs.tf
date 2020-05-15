@@ -7,8 +7,12 @@
 #                    | |                  
 #                    |_|
 
-output "private_ip_node-1" {
+output "private_ip_node_1" {
   value = module.node-1.private_ip
+}
+
+output "private_ip_node-2" {
+  value = module.node-2.private_ip
 }
 
 //output "public_key" {
@@ -23,20 +27,32 @@ output "public_ip_node_1" {
   value = module.node-1.public_ip
 }
 
+output "public_ip_node_2" {
+  value = module.node-2.public_ip
+}
+
 output "public_dns_node_1" {
   value = module.node-1.public_dns
+}
+
+output "public_dns_node_2" {
+  value = module.node-2.public_dns
 }
 
 output "ssh_command_node_1" {
   value = module.node-1.ssh_command
 }
 
+output "ssh_command_node_2" {
+  value = module.node-2.ssh_command
+}
+
 output "export_kubeconfig_command" {
-  value = module.single-node-cluster.export_kubeconfig_command
+  value = module.multiple-node-cluster.export_kubeconfig_command
 }
 
 output "kubectl_kubeconfig_command" {
-  value = module.single-node-cluster.kubectl_kubeconfig_command
+  value = module.multiple-node-cluster.kubectl_kubeconfig_command
 }
 
 output "bucket_name" {

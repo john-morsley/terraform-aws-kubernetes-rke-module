@@ -18,3 +18,7 @@ output "export_kubeconfig_command" {
 output "kubectl_kubeconfig_command" {
   value = "kubectl get nodes --kubeconfig=k8s/${local.kube_config_filename}"
 }
+
+output "kube_config_yaml" {
+  value = rke_cluster.this.kube_config_yaml
+}

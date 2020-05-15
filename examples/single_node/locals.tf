@@ -17,6 +17,6 @@ locals {
     "kubernetes.io/cluster/${local.name}" = "owned" 
   }
   
-  node_name = "${var.ec2_name}-1-${random_pet.this.id}"
+  node_name = "${var.ec2_name}-1"
 
 }

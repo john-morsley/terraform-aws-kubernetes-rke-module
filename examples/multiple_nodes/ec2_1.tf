@@ -30,6 +30,8 @@ module "node-1" {
   
   bucket_name = local.bucket_name
   
+  docker = true
+  
   mock_depends_on = [ 
     module.s3_bucket
   ]

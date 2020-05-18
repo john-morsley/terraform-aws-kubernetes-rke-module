@@ -44,12 +44,10 @@ module "multiple-node-cluster" {
   ]
 
   mock_depends_on = [
-    module.vpc.id,
-    module.allow-ssh.id,
-    module.node-1.id,
-    module.node-2.id,
-    null_resource.is-docker-ready-node-1,
-    null_resource.is-docker-ready-node-2
+    module.vpc,
+    module.allow-ssh,
+    module.node-1,
+    module.node-2
   ]
   
 }

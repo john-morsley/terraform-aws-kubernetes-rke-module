@@ -29,6 +29,8 @@ module "node-2" {
   tags = local.cluster_id_tag
   
   bucket_name = local.bucket_name
+
+  docker = true
   
   mock_depends_on = [ 
     module.s3_bucket

@@ -19,8 +19,8 @@ resource "null_resource" "is-cluster-ready" {
   provisioner "local-exec" {
     command = "bash ${path.module}/scripts/is_cluster_ready.sh"
     environment = {
-      KUBE_CONFIG_FOLDER = "${path.cwd}/k8s"
-      CURRENT_FOLDER = "${path.module}"
+      CURRENT = path.cwd
+      ROOT = path.module
     }
   }
 
@@ -46,8 +46,8 @@ resource "null_resource" "are_deployments_ready" {
   provisioner "local-exec" {
     command = "bash ${path.module}/scripts/are_deployments_ready.sh"
     environment = {
-      KUBE_CONFIG_FOLDER = "${path.cwd}/k8s"
-      CURRENT_FOLDER = "${path.module}"
+      CURRENT = path.cwd
+      ROOT = path.module
     }
   }
 

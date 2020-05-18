@@ -19,7 +19,8 @@
 
 module "single-node-cluster" {
 
-  source = "john-morsley/kubernetes-cluster/aws"
+  source = "./../../../terraform-aws-kubernetes-cluster"
+  //source = "john-morsley/kubernetes-cluster/aws"
 
   cluster_name = local.name 
   

@@ -9,17 +9,46 @@ resource "null_resource" "is-cluster-ready" {
 
   connection {
     type        = "ssh"
-    //host        = aws_instance.k8s.public_ip
-    host = var.ec2_data[0].public_ip
+    host        = var.ec2_data[0].public_ip
     user        = "ubuntu"
-    //private_key = join("", tls_private_key.node_key.*.private_key_pem)
     private_key = base64decode(var.ec2_data[0].encoded_private_key)
   }
 
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "bash ${path.module}/is_cluster_ready.sh ${path.cwd}/k8s/${local.kube_config_filename}"
+    command = "bash ${path.module}/scripts/is_cluster_ready.sh"
+    environment = {
+      KUBE_CONFIG_FOLDER = "${path.cwd}/k8s"
+      CURRENT_FOLDER = "${path.module}"
+    }
+  }
+
+}
+
+# https://www.terraform.io/docs/providers/null/resource.html
+
+resource "null_resource" "are_deployments_ready" {
+
+  depends_on = [
+    null_resource.is-cluster-ready
+  ]
+
+  connection {
+    type        = "ssh"
+    host        = var.ec2_data[0].public_ip
+    user        = "ubuntu"
+    private_key = base64decode(var.ec2_data[0].encoded_private_key)
+  }
+
+  # https://www.terraform.io/docs/provisioners/local-exec.html
+
+  provisioner "local-exec" {
+    command = "bash ${path.module}/scripts/are_deployments_ready.sh"
+    environment = {
+      KUBE_CONFIG_FOLDER = "${path.cwd}/k8s"
+      CURRENT_FOLDER = "${path.module}"
+    }
   }
 
 }

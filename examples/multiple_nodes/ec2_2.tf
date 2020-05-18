@@ -1,4 +1,4 @@
-﻿#      _   _           _        ___  
+#      _   _           _        ___  
 #     | \ | |         | |      |__ \ 
 #     |  \| | ___   __| | ___     ) |
 #     | . ` |/ _ \ / _` |/ _ \   / / 
@@ -18,12 +18,14 @@ module "node-2" {
 
   iam_instance_profile_name = module.iam-role.instance_profile_name
 
-  public_subnet_id = module.vpc.public_subnet_id
+  public_subnet_id = module.vpc.public_subnet_ids[0]
 
   security_group_ids = [ 
     module.allow-ssh.id 
   ]
 
+  availability_zone = data.aws_availability_zones.available.names[0]
+  
   tags = local.cluster_id_tag
   
   bucket_name = local.bucket_name

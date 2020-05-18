@@ -7,6 +7,6 @@
 
 locals {
 
-  kube_config_filename = "kube-config.yml"  
+  kube_config_filename = "kube-config.yaml"
   
 }

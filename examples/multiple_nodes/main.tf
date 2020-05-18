@@ -1,4 +1,4 @@
-﻿#       _____ _             _      
+#       _____ _             _      
 #      / ____(_)           | |     
 #     | (___  _ _ __   __ _| | ___ 
 #      \___ \| | '_ \ / _` | |/ _ \
@@ -19,7 +19,8 @@
 
 module "multiple-node-cluster" {
 
-  source = "john-morsley/kubernetes-cluster/aws"
+  source = "./../../../terraform-aws-kubernetes-cluster"
+  #source = "john-morsley/kubernetes-cluster/aws"
 
   cluster_name = local.name 
   

@@ -10,6 +10,7 @@
 resource "null_resource" "is-cluster-ready" {
 
   depends_on = [
+    null_resource.get-shared-scripts,
     rke_cluster.this,
     local_file.kube-config-yaml
   ]
@@ -24,11 +25,7 @@ resource "null_resource" "is-cluster-ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "bash ${path.module}/scripts/is_cluster_ready.sh"
-    environment = {
-      CURRENT = path.cwd
-      ROOT    = path.module
-    }
+    command = "bash ${path.cwd}/shared-scripts/kubernetes/is_cluster_ready.sh ${path.cwd}/k8s/kube-config.yaml"
   }
 
 }
@@ -51,11 +48,7 @@ resource "null_resource" "are_deployments_ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "bash ${path.module}/scripts/are_deployments_ready.sh"
-    environment = {
-      CURRENT = path.cwd
-      ROOT    = path.module
-    }
+    command = "bash ${path.cwd}/shared-scripts/kubernetes/are_deployments_ready.sh ${path.cwd}/k8s/kube-config.yaml"
   }
 
 }

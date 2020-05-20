@@ -35,6 +35,7 @@ resource "null_resource" "is-cluster-ready" {
 resource "null_resource" "are_deployments_ready" {
 
   depends_on = [
+    null_resource.get-shared-scripts,
     null_resource.is-cluster-ready
   ]
 

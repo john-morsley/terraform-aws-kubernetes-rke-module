@@ -33,3 +33,10 @@ override.tf.json
 
 # Secrets!
 *.tfvars
+
+# Keys
+*keys/*.pub
+*keys/*.pem
+
+# RKE
+* *k8s/kube-config.yaml

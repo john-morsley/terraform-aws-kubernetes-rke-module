@@ -1,3 +1,10 @@
+#       _____ _           _            
+#      / ____| |         | |           
+#     | |    | |_   _ ___| |_ ___ _ __ 
+#     | |    | | | | / __| __/ _ \ '__|
+#     | |____| | |_| \__ \ ||  __/ |   
+#      \_____|_|\__,_|___/\__\___|_|   
+
 # https://www.terraform.io/docs/providers/null/resource.html
 
 resource "null_resource" "is-cluster-ready" {
@@ -20,7 +27,7 @@ resource "null_resource" "is-cluster-ready" {
     command = "bash ${path.module}/scripts/is_cluster_ready.sh"
     environment = {
       CURRENT = path.cwd
-      ROOT = path.module
+      ROOT    = path.module
     }
   }
 
@@ -47,7 +54,7 @@ resource "null_resource" "are_deployments_ready" {
     command = "bash ${path.module}/scripts/are_deployments_ready.sh"
     environment = {
       CURRENT = path.cwd
-      ROOT = path.module
+      ROOT    = path.module
     }
   }
 

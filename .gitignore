@@ -40,3 +40,6 @@ override.tf.json
 
 # RKE
 * *k8s/kube-config.yaml
+
+# Shared Scripts
+shared-scripts/

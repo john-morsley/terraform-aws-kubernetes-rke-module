@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'Cloning Shared Scripts repository...'
+echo 'Deleting Shared Scripts folder...'
 
 rm --recursive --force shared-scripts-*
 

@@ -21,9 +21,6 @@ resource "null_resource" "delete-shared-scripts" {
 
   provisioner "local-exec" {
     command = "bash ${path.module}/scripts/delete_shared_scripts.sh"
-    environment = {
-      SHARED_SCRIPTS_FOLDER=local.shared_scripts_folder
-    }
     when = "destroy"
   }
 

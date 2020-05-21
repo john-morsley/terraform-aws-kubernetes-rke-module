@@ -39,7 +39,8 @@ override.tf.json
 *keys/*.pem
 
 # RKE
-* *k8s/kube-config.yaml
+*k8s/kube-config.yaml
+terraform-provider-rke-*/
 
 # Shared Scripts
-shared-scripts/
+*shared-scripts/

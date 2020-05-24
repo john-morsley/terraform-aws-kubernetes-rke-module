@@ -35,8 +35,7 @@ override.tf.json
 *.tfvars
 
 # Keys
-*keys/*.pub
-*keys/*.pem
+**keys/
 
 # RKE
 *k8s/kube-config.yaml

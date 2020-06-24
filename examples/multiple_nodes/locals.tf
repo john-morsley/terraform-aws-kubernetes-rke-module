@@ -8,16 +8,16 @@
 locals {
 
   all_cidr_block = "0.0.0.0/0" # All possible IP address range
-  
+
   bucket_name = "${var.name}-${random_pet.this.id}"
 
-  name = "multiple-node-example"
+  name = var.name
 
   cluster_id_tag = {
-    "kubernetes.io/cluster/${local.name}" = "owned" 
+    "kubernetes.io/cluster/${local.name}" = "owned"
   }
-  
+
   node_1_name = "${var.ec2_name}-1"
   node_2_name = "${var.ec2_name}-2"
-  
+
 }

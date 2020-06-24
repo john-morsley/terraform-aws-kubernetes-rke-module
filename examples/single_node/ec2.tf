@@ -7,11 +7,12 @@
 
 module "node-1" {
 
-  source = "john-morsley/ec2/aws"
+  source = "./../../../terraform-aws-ec2"
+  #source = "john-morsley/ec2/aws"
 
   name = local.node_name
 
-  ami = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.ubuntu.id
   instance_type = var.ec2_instance_type
 
   vpc_id = module.vpc.id
@@ -20,20 +21,20 @@ module "node-1" {
 
   public_subnet_id = module.vpc.public_subnet_ids[0]
 
-  security_group_ids = [ 
-    module.allow-ssh.id 
+  security_group_ids = [
+    module.allow-ssh.id
   ]
 
   availability_zone = data.aws_availability_zones.available.names[0]
-  
+
   tags = local.cluster_id_tag
-  
+
   bucket_name = local.bucket_name
 
   docker = true
-  
-  mock_depends_on = [ 
+
+  mock_depends_on = [
     module.s3_bucket
   ]
-  
+
 }

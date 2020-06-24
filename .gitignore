@@ -43,3 +43,7 @@ terraform-provider-rke-*/
 
 # Shared Scripts
 *shared-scripts/
+
+# ASP.NET
+bin/
+obj/

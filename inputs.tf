@@ -18,10 +18,10 @@ variable "bucket_name" {
 variable "ec2_data" {
   type = list(
     object({
-      user = string
-      role = list(string)
-      public_ip = string
-      private_ip = string
+      user                = string
+      role                = list(string)
+      public_ip           = string
+      private_ip          = string
       encoded_private_key = string
     })
   )

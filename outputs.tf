@@ -12,11 +12,11 @@ output "rke_ec2_data" {
 }
 
 output "export_kubeconfig_command" {
-  value = "export KUBECONFIG=k8s/${local.kube_config_filename}"
+  value = "export KUBECONFIG=k8s/kube_config.yaml"
 }
 
 output "kubectl_kubeconfig_command" {
-  value = "kubectl get nodes --kubeconfig=k8s/${local.kube_config_filename}"
+  value = "kubectl get nodes --kubeconfig=k8s/kube_config.yaml"
 }
 
 output "kube_config_yaml" {

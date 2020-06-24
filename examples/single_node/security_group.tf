@@ -15,9 +15,10 @@
 
 module "allow-ssh" {
 
-  source = "john-morsley/security-group/aws"
+  source = "./../../../terraform-aws-security-group"
+  #source = "john-morsley/security-group/aws"
 
-  name = local.name
+  name        = local.name
   description = "To allow SSH to set up Docker."
 
   vpc_id = module.vpc.id
@@ -28,25 +29,25 @@ module "allow-ssh" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      cidr_blocks = [ local.all_cidr_block ]
+      cidr_blocks = [local.all_cidr_block]
     },
     {
       description = "Allow KupeAPI"
       from_port   = 6443
       to_port     = 6443
       protocol    = "tcp"
-      cidr_blocks = [ local.all_cidr_block ]
+      cidr_blocks = [local.all_cidr_block]
     }
   ]
-  
+
   egress = [{
     description = "Allow All"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [ local.all_cidr_block ]
+    cidr_blocks = [local.all_cidr_block]
   }]
 
   tags = local.cluster_id_tag
-  
+
 }

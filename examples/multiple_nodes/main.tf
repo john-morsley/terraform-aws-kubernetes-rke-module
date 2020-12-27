@@ -19,8 +19,8 @@
 
 module "multiple-node-cluster" {
 
-  source = "./../../../terraform-aws-kubernetes-cluster"
-  #source = "john-morsley/kubernetes-cluster/aws"
+  source = "./../../../terraform-aws-kubernetes-rke"
+  #source = "john-morsley/kubernetes-rke/aws"
 
   cluster_name = local.name
 

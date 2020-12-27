@@ -9,7 +9,7 @@
 
 module "kube-config-yaml" {
 
-  source = "./../terraform-aws-s3-object"
+  source = "./../terraform-aws-s3-object-module"
   #source = "john-morsley/s3-object/aws"
 
   bucket_name = var.bucket_name

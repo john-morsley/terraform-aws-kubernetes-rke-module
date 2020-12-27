@@ -20,7 +20,7 @@
 module "single-node-cluster" {
 
   source = "./../../../terraform-aws-kubernetes-rke"
-  //source = "john-morsley/kubernetes-cluster/aws"
+  //source = "john-morsley/kubernetes-rke/aws"
 
   cluster_name = local.name
 

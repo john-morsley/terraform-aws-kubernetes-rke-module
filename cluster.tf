@@ -25,7 +25,7 @@ resource "null_resource" "is-cluster-ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "bash ${path.cwd}/${local.shared_scripts_folder}/kubernetes/is_cluster_ready.sh ${path.cwd}/k8s/kube-config.yaml"
+    command = "bash ${path.cwd}/${local.shared_scripts_folder}/kubernetes/is_cluster_ready.sh ${path.cwd}/k8s/kubeconfig.yaml"
   }
 
 }
@@ -49,7 +49,7 @@ resource "null_resource" "are_deployments_ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "bash ${path.cwd}/${local.shared_scripts_folder}/kubernetes/are_deployments_ready.sh ${path.cwd}/k8s/kube-config.yaml"
+    command = "bash ${path.cwd}/${local.shared_scripts_folder}/kubernetes/are_deployments_ready.sh ${path.cwd}/k8s/kubeconfig.yaml"
   }
 
 }

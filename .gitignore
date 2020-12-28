@@ -28,6 +28,8 @@ override.tf.json
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
 
+.terraform.lock.hcl
+
 # JetBrains Rider
 .idea
 
@@ -38,7 +40,7 @@ override.tf.json
 **keys/
 
 # RKE
-*k8s/kube-config.yaml
+*k8s/kubeconfig.yaml
 terraform-provider-rke-*/
 
 # Shared Scripts

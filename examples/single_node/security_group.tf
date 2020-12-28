@@ -13,40 +13,81 @@
 #                                 | |    
 #                                 |_|     
 
-module "allow-ssh" {
+//module "allow-ssh-sg" {
+//
+//  source = "./../../../terraform-aws-security-group-module"
+//  #source = "john-morsley/security-group/aws"
+//
+//  name        = var.cluster_name
+//  description = "Allow SSH."
+//
+//  vpc_id = module.vpc.id
+//
+//  // ingress = [
+//  //   {
+//  //     description = "Allow SSH"
+//  //     from_port   = 22
+//  //     to_port     = 22
+//  //     protocol    = "tcp"
+//  //     cidr_blocks = [local.all_cidr_block]
+//  //   }
+//  // ]
+//
+//  // egress = [{
+//  //   description = "Allow All"
+//  //   from_port   = 0
+//  //   to_port     = 0
+//  //   protocol    = "-1"
+//  //   cidr_blocks = [local.all_cidr_block]
+//  // }]
+//
+//  tags = local.cluster_id_tag
+//
+//}
 
-  source = "./../../../terraform-aws-security-group"
+//module "allow-kube-api-sg" {
+//
+//  source = "./../../../terraform-aws-security-group-module"
+//  #source = "john-morsley/security-group/aws"
+//
+//  name        = var.cluster_name
+//  description = "Allow Kube API."
+//
+//  vpc_id = module.vpc.id
+//
+//  // ingress = [
+//  //   {
+//  //     description = "Allow KupeAPI"
+//  //     from_port   = 6443
+//  //     to_port     = 6443
+//  //     protocol    = "tcp"
+//  //     cidr_blocks = [local.all_cidr_block]
+//  //   }
+//  // ]
+//
+//  // egress = [{
+//  //   description = "Allow All"
+//  //   from_port   = 0
+//  //   to_port     = 0
+//  //   protocol    = "-1"
+//  //   cidr_blocks = [local.all_cidr_block]
+//  // }]
+//
+//  tags = local.cluster_id_tag
+//
+//}
+
+# Allow All
+
+module "allow-all-sg" {
+
+  source = "./../../../terraform-aws-security-group-module"
   #source = "john-morsley/security-group/aws"
 
-  name        = local.name
-  description = "To allow SSH to set up Docker."
+  name        = "allow-all-for-${var.cluster_name}"
+  description = "Allow All."
 
   vpc_id = module.vpc.id
-
-  ingress = [
-    {
-      description = "Allow SSH"
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      cidr_blocks = [local.all_cidr_block]
-    },
-    {
-      description = "Allow KupeAPI"
-      from_port   = 6443
-      to_port     = 6443
-      protocol    = "tcp"
-      cidr_blocks = [local.all_cidr_block]
-    }
-  ]
-
-  egress = [{
-    description = "Allow All"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = [local.all_cidr_block]
-  }]
 
   tags = local.cluster_id_tag
 

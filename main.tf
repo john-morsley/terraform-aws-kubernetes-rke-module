@@ -42,6 +42,6 @@ resource "rke_cluster" "this" {
     name = "aws"
   }
 
-  depends_on = [var.mock_depends_on]
+  //depends_on = [var.mock_depends_on]
 
 }

@@ -22,7 +22,7 @@ module "single-node-cluster" {
   source = "./../../../terraform-aws-kubernetes-rke"
   //source = "john-morsley/kubernetes-rke/aws"
 
-  cluster_name = local.name
+  cluster_name = var.cluster_name
 
   bucket_name = local.bucket_name
 
@@ -34,9 +34,10 @@ module "single-node-cluster" {
     encoded_private_key = module.node-1.encoded_private_key
   }]
 
-  mock_depends_on = [
+  depends_on = [
     module.vpc,
-    module.allow-ssh,
+    //module.allow-kube-api-sg,
+    module.allow-all-sg,
     module.node-1
   ]
 

@@ -35,8 +35,12 @@ output "export_kubeconfig_command" {
   value = module.single-node-cluster.export_kubeconfig_command
 }
 
-output "kubectl_kubeconfig_command" {
-  value = module.single-node-cluster.kubectl_kubeconfig_command
+output "kubectl_get_nodes_command" {
+  value = module.single-node-cluster.kubectl_get_nodes_kubeconfig_command
+}
+
+output "kubectl_get_all_pods_command" {
+  value = module.single-node-cluster.kubectl_get_all_pods_kubeconfig_command
 }
 
 output "bucket_name" {

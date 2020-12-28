@@ -21,20 +21,21 @@ module "node-1" {
 
   public_subnet_id = module.vpc.public_subnet_ids[0]
 
-  security_group_ids = [
-    module.allow-ssh.id
+  additional_security_group_ids = [
+    module.allow-all-sg.id
+    //module.allow-kube-api-sg.id
   ]
 
   availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = local.cluster_id_tag
 
-  bucket_name = local.bucket_name
+  //bucket_name = local.bucket_name
 
   docker = true
 
-  mock_depends_on = [
-    module.s3_bucket
-  ]
+  //depends_on = [
+  //  module.s3_bucket
+  //]
 
 }

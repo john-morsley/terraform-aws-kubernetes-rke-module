@@ -28,7 +28,7 @@ variable "ec2_data" {
   default = []
 }
 
-variable "mock_depends_on" {
-  type    = any
-  default = null
-}
+// variable "mock_depends_on" {
+//   type    = any
+//   default = null
+// }

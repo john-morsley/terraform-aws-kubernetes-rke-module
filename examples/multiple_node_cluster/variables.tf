@@ -11,6 +11,16 @@ variable "cluster_name" {
   type = string
 }
 
+variable "node_settings" {
+  type = list(
+  object({
+    role                = list(string)
+    instance_type       = string
+  })
+  )
+  default = []
+}
+
 # VPC
 
 variable "vpc_cidr" {
@@ -34,55 +44,7 @@ variable "iam_role_name" {
 
 # EC2 (Node)
 
-variable "number_of_nodes" {
-  type    = number
-  default = 1
-}
-
 variable "ec2_name" {
   type    = string
   default = "node"
 }
-
-variable "ec2_instance_type" {
-  type    = string
-  default = "t2.xlarge"
-}
-
-//variable "node_data" {
-//  description = "This object will contain data from the nodes and will be passed to the cluster."
-//  type = list(object({
-//    user                = string
-//    role                = list(string) 
-//    public_ip           = string
-//    private_ip          = string
-//    encoded_private_key = string
-//  }))
-//  default = []
-//}
-
-//node_data = type = list 
-//    {
-//      user                = "ubuntu"
-//      role                = ["controlplane", "etcd", "worker"]
-//      public_ip           = module.node-1.public_ip
-//      private_ip          = module.node-1.private_ip
-//      encoded_private_key = module.node-1.encoded_private_key
-//    },
-//    {
-//      user                = "ubuntu"
-//      role                = ["controlplane", "etcd", "worker"]
-//      public_ip           = module.node-2.public_ip
-//      private_ip          = module.node-2.private_ip
-//      encoded_private_key = module.node-2.encoded_private_key
-//    }
-
-# Domain
-
-//variable "domain" {
-//  type = string
-//}
-//
-//variable "sub_domain" {
-//  type = string
-//}

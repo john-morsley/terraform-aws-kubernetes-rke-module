@@ -11,6 +11,16 @@ variable "cluster_name" {
   type = string
 }
 
+variable "node_settings" {
+  type = list(
+    object({
+      role                = list(string)
+      instance_type       = string
+    })
+  )
+  default = []
+}
+
 # VPC
 
 variable "vpc_cidr" {
@@ -37,9 +47,4 @@ variable "iam_role_name" {
 variable "ec2_name" {
   type    = string
   default = "node"
-}
-
-variable "ec2_instance_type" {
-  type    = string
-  default = "t2.xlarge"
 }

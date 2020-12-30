@@ -7,30 +7,6 @@
 #                    | |                  
 #                    |_|
 
-output "private_ip_node-1" {
-  value = module.node-1.private_ip
-}
-
-//output "public_key" {
-//  value = base64decode(module.node-1.encoded_public_key)
-//}
-//
-//output "private_key" {
-//  value = base64decode(module.node-1.encoded_private_key)
-//}
-
-output "public_ip_node_1" {
-  value = module.node-1.public_ip
-}
-
-output "public_dns_node_1" {
-  value = module.node-1.public_dns
-}
-
-output "ssh_command_node_1" {
-  value = module.node-1.ssh_command
-}
-
 output "export_kubeconfig_command" {
   value = module.single-node-cluster.export_kubeconfig_command
 }
@@ -47,6 +23,26 @@ output "bucket_name" {
   value = local.bucket_name
 }
 
+output "node_settings" {
+  value = module.single-node-cluster.node_settings
+}
+
+output "node_outputs" {
+  value = module.single-node-cluster.node_outputs
+}
+
 output "node_data" {
   value = module.single-node-cluster.node_data
+}
+
+output "ssh_commands" {
+  value = module.single-node-cluster.ssh_commands
+}
+
+output "kubeconfig_yaml" {
+  value = module.single-node-cluster.kubeconfig_yaml
+}
+
+output "network-load_balancer_url" {
+  value = module.single-node-cluster.network-load_balancer_url
 }

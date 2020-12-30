@@ -19,20 +19,16 @@
 
 # https://www.terraform.io/docs/providers/aws/r/lb.html
 
-resource "aws_lb" "nodes" {
+resource "aws_lb" "node-nlb" {
 
   name                             = "nodes-nlb"
   internal                         = false
   load_balancer_type               = "network"
-  subnets                          = module.vpc.public_subnet_ids
+  subnets                          = var.public_subnet_ids
   enable_cross_zone_load_balancing = true
 
   enable_deletion_protection = false
-
-  #  tags = {
-  #    Environment = "production"
-  #  }
-
+  
   depends_on = [
     module.nodes
   ]
@@ -46,12 +42,7 @@ resource "aws_lb_target_group" "http" {
   name     = "http-tg"
   port     = 80
   protocol = "TCP"
-  #target_type = "ip"
-  vpc_id   = module.vpc.id
-  
-//  health_check {
-//    enabled = false
-//  }
+  vpc_id   = var.vpc_id
   
 }
 
@@ -60,20 +51,15 @@ resource "aws_lb_target_group" "https" {
   name     = "https-tg"
   port     = 443
   protocol = "TCP"
-  #target_type = "ip"
-  vpc_id   = module.vpc.id
+  vpc_id   = var.vpc_id
   
-//  health_check {
-//    enabled = false
-//  }
-
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group_attachment
 
 resource "aws_lb_target_group_attachment" "http" {
   
-  count = var.number_of_nodes
+  count = length(local.node_data)
   
   target_group_arn = aws_lb_target_group.http.arn
   target_id        = module.nodes[count.index].id
@@ -84,7 +70,7 @@ resource "aws_lb_target_group_attachment" "http" {
 
 resource "aws_lb_target_group_attachment" "https" {
 
-  count = var.number_of_nodes
+  count = length(local.node_data)
   
   target_group_arn = aws_lb_target_group.https.arn
   target_id        = module.nodes[count.index].id
@@ -96,7 +82,7 @@ resource "aws_lb_target_group_attachment" "https" {
 
 resource "aws_lb_listener" "http" {
   
-  load_balancer_arn = aws_lb.nodes.arn
+  load_balancer_arn = aws_lb.node-nlb.arn
   port              = "80"
   protocol          = "TCP"
 
@@ -109,7 +95,7 @@ resource "aws_lb_listener" "http" {
 
 resource "aws_lb_listener" "https" {
 
-  load_balancer_arn = aws_lb.nodes.arn
+  load_balancer_arn = aws_lb.node-nlb.arn
   port              = "443"
   protocol          = "TCP"
 

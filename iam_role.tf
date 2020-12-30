@@ -15,10 +15,10 @@
 
 module "iam-role" {
 
-  source = "./../../../terraform-aws-iam-role-module"
+  source = "./../terraform-aws-iam-role-module"
   #source = "john-morsley/iam/aws"
 
-  name = "${var.iam_role_name}-for-${var.cluster_name}"
+  name = "eks-for-${var.cluster_name}"
 
   assume_role_policy = file("${path.module}/iam/role.json")
 

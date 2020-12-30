@@ -49,3 +49,8 @@ terraform-provider-rke-*/
 # ASP.NET
 bin/
 obj/
+
+k8s/
+keys/
+**/k8s/
+**/keys/

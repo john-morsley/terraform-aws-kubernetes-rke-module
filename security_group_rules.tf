@@ -19,7 +19,7 @@
 
 module "rke-ingress-sgr" {
 
-  source = "./../../../terraform-aws-security-group-rule-module"
+  source = "./../terraform-aws-security-group-rule-module"
   #source = "john-morsley/security-group-rule/aws"
 
   description = "Allow all traffic (temp)."
@@ -138,7 +138,7 @@ module "rke-ingress-sgr" {
 
 module "egress-sgr" {
 
-  source = "./../../../terraform-aws-security-group-rule-module"
+  source = "./../terraform-aws-security-group-rule-module"
   #source = "john-morsley/security-group-rule/aws"
 
   description = "Egress for HTTP."

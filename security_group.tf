@@ -17,31 +17,31 @@
 
 module "cluster-sg" {
 
-  source = "./../../../terraform-aws-security-group-module"
+  source = "./../terraform-aws-security-group-module"
   #source = "john-morsley/security-group/aws"
 
   name        = "${var.cluster_name}-sg"
   description = "Cluster related traffic."
 
-  vpc_id = module.vpc.id
+  vpc_id = var.vpc_id
 
-  //  // ingress = [
-  //  //   {
-  //  //     description = "Allow KupeAPI"
-  //  //     from_port   = 6443
-  //  //     to_port     = 6443
-  //  //     protocol    = "tcp"
-  //  //     cidr_blocks = [local.all_cidr_block]
-  //  //   }
-  //  // ]
-  //
-  //  // egress = [{
-  //  //   description = "Allow All"
-  //  //   from_port   = 0
-  //  //   to_port     = 0
-  //  //   protocol    = "-1"
-  //  //   cidr_blocks = [local.all_cidr_block]
-  //  // }]
+//  // ingress = [
+//  //   {
+//  //     description = "Allow KupeAPI"
+//  //     from_port   = 6443
+//  //     to_port     = 6443
+//  //     protocol    = "tcp"
+//  //     cidr_blocks = [local.all_cidr_block]
+//  //   }
+//  // ]
+//
+//  // egress = [{
+//  //   description = "Allow All"
+//  //   from_port   = 0
+//  //   to_port     = 0
+//  //   protocol    = "-1"
+//  //   cidr_blocks = [local.all_cidr_block]
+//  // }]
 
   tags = local.cluster_id_tag
 

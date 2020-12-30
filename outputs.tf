@@ -7,8 +7,8 @@
 #                    | |                  
 #                    |_|                  
 
-output "rke_ec2_data" {
-  value = var.ec2_data
+output "node_data" {
+  value = var.node_data
 }
 
 output "export_kubeconfig_command" {

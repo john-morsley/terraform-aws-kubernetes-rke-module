@@ -16,8 +16,7 @@ resource "rke_cluster" "this" {
   ignore_docker_version = true
 
   dynamic "nodes" {
-
-    for_each = var.ec2_data
+    for_each = var.node_data
 
     content {
       user             = "ubuntu"
@@ -26,7 +25,6 @@ resource "rke_cluster" "this" {
       internal_address = nodes.value["private_ip"]
       ssh_key          = base64decode(nodes.value["encoded_private_key"])
     }
-
   }
 
   ############ #

@@ -15,7 +15,7 @@ variable "bucket_name" {
   type = string
 }
 
-variable "ec2_data" {
+variable "node_data" {
   type = list(
     object({
       user                = string
@@ -27,8 +27,3 @@ variable "ec2_data" {
   )
   default = []
 }
-
-// variable "mock_depends_on" {
-//   type    = any
-//   default = null
-// }

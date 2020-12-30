@@ -17,9 +17,9 @@ resource "null_resource" "is-cluster-ready" {
 
   connection {
     type        = "ssh"
-    host        = var.ec2_data[0].public_ip
+    host        = var.node_data[0].public_ip
     user        = "ubuntu"
-    private_key = base64decode(var.ec2_data[0].encoded_private_key)
+    private_key = base64decode(var.node_data[0].encoded_private_key)
   }
 
   # https://www.terraform.io/docs/provisioners/local-exec.html
@@ -41,9 +41,9 @@ resource "null_resource" "are_deployments_ready" {
 
   connection {
     type        = "ssh"
-    host        = var.ec2_data[0].public_ip
+    host        = var.node_data[0].public_ip
     user        = "ubuntu"
-    private_key = base64decode(var.ec2_data[0].encoded_private_key)
+    private_key = base64decode(var.node_data[0].encoded_private_key)
   }
 
   # https://www.terraform.io/docs/provisioners/local-exec.html
@@ -53,3 +53,19 @@ resource "null_resource" "are_deployments_ready" {
   }
 
 }
+
+# https://www.terraform.io/docs/providers/null/resource.html
+
+//resource "null_resource" "are_deployments_ready" {
+//
+//  depends_on = [
+//    null_resource.are_deployments_ready
+//  ]
+//  
+//  # https://www.terraform.io/docs/provisioners/local-exec.html
+//
+//  provisioner "local-exec" {
+//    command = "curl https://${} "
+//  }
+//
+//}

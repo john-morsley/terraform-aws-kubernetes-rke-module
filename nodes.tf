@@ -10,15 +10,11 @@ module "nodes" {
   source = "./../terraform-aws-ec2-module"
   #source = "john-morsley/ec2/aws"
 
-  //count = var.number_of_nodes
   count = length(var.node_settings)
   
-  //for_each = var.node_data
-
   name = "${var.cluster_name}-node-${count.index + 1}"
 
   ami           = data.aws_ami.ubuntu.id
-  //instance_type = var.ec2_instance_type
   instance_type = var.node_settings[count.index].instance_type
 
   vpc_id = var.vpc_id
@@ -33,6 +29,8 @@ module "nodes" {
   ]
 
   availability_zone = var.availability_zone_names[0] // Randomise?
+
+  bucket_prefix = "morsley-io"
 
   tags = local.cluster_id_tag
 

@@ -24,7 +24,7 @@ resource "rke_cluster" "this" {
       ssh_key = base64decode(nodes.value["encoded_private_key"])
     }
   }
-
+  
   ############ #
   # Important! #
   # ############
@@ -91,16 +91,16 @@ resource "null_resource" "are_deployments_ready" {
 
 }
 
-resource "null_resource" "is_default_backend_there" {
-  
-  # https://www.terraform.io/docs/provisioners/local-exec.html
-
-  provisioner "local-exec" {
-    command = "curl --max-time 500 http://${aws_lb.node-nlb.dns_name}"
-  }
-
-  depends_on = [
-    null_resource.are_deployments_ready
-  ]
-  
-}
+//resource "null_resource" "is_default_backend_there" {
+//  
+//  # https://www.terraform.io/docs/provisioners/local-exec.html
+//
+//  provisioner "local-exec" {
+//    command = "bash ${path.cwd}/${local.shared_scripts_folder}/aws/is_load_balancer_ready.sh ${aws_lb.node-nlb.arn}"
+//  }
+//
+//  depends_on = [
+//    null_resource.are_deployments_ready
+//  ]
+//  
+//}

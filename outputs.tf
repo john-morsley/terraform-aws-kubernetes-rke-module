@@ -44,6 +44,10 @@ output "ssh_commands" {
   ]
 }
 
-output "network-load_balancer_url" {
+output "network_load_balancer_url" {
   value = aws_lb.node-nlb.dns_name
+}
+
+output "network_load_balancer_zone_id" {
+  value = aws_lb.node-nlb.zone_id
 }

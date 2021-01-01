@@ -33,9 +33,6 @@ override.tf.json
 # JetBrains Rider
 .idea
 
-# Secrets!
-*.tfvars
-
 # Keys
 **keys/
 

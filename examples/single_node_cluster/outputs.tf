@@ -23,13 +23,13 @@ output "bucket_name" {
   value = local.bucket_name
 }
 
-output "node_settings" {
-  value = module.single-node-cluster.node_settings
-}
+//output "node_settings" {
+//  value = module.single-node-cluster.node_settings
+//}
 
-output "node_outputs" {
-  value = module.single-node-cluster.node_outputs
-}
+//output "node_outputs" {
+//  value = module.single-node-cluster.node_outputs
+//}
 
 output "node_data" {
   value = module.single-node-cluster.node_data
@@ -39,10 +39,10 @@ output "ssh_commands" {
   value = module.single-node-cluster.ssh_commands
 }
 
-output "kubeconfig_yaml" {
-  value = module.single-node-cluster.kubeconfig_yaml
-}
+//output "kubeconfig_yaml" {
+//  value = module.single-node-cluster.kubeconfig_yaml
+//}
 
 output "network-load_balancer_url" {
-  value = module.single-node-cluster.network-load_balancer_url
+  value = module.single-node-cluster.network_load_balancer_url
 }

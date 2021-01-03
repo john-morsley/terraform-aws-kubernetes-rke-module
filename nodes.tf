@@ -1,9 +1,12 @@
-#      _   _           _           
-#     | \ | |         | |          
-#     |  \| | ___   __| | ___  ___ 
-#     | . ` |/ _ \ / _` |/ _ \/ __|
-#     | |\  | (_) | (_| |  __/\__ \
-#     |_| \_|\___/ \__,_|\___||___/
+/*
+ _   _           _           
+| \ | |         | |          
+|  \| | ___   __| | ___  ___ 
+| . ` |/ _ \ / _` |/ _ \/ __|
+| |\  | (_) | (_| |  __/\__ \
+|_| \_|\___/ \__,_|\___||___/
+
+                           */
 
 module "nodes" {
 
@@ -11,7 +14,7 @@ module "nodes" {
   #source = "john-morsley/ec2/aws"
 
   count = length(var.node_settings)
-  
+
   name = "${var.cluster_name}-node-${count.index + 1}"
 
   ami           = data.aws_ami.ubuntu.id
@@ -35,5 +38,5 @@ module "nodes" {
   tags = local.cluster_id_tag
 
   docker = true
-  
+
 }

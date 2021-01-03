@@ -13,10 +13,10 @@ variable "cluster_name" {
 
 variable "node_settings" {
   type = list(
-  object({
-    role                = list(string)
-    instance_type       = string
-  })
+    object({
+      role          = list(string)
+      instance_type = string
+    })
   )
   default = []
 }

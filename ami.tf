@@ -1,11 +1,14 @@
-#                 __  __   _____
-#         /\     |  \/  | |_   _|
-#        /  \    | \  / |   | |
-#       / /\ \   | |\/| |   | |
-#      / ____ \  | |  | |  _| |_
-#     /_/    \_\ |_|  |_| |_____|
+/*
+            __  __   _____
+    /\     |  \/  | |_   _|
+   /  \    | \  / |   | |
+  / /\ \   | |\/| |   | |
+ / ____ \  | |  | |  _| |_
+/_/    \_\ |_|  |_| |_____|
 
-# Amazon Machine Image
+Amazon Machine Image     */
+
+#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami
 
 data "aws_ami" "ubuntu" {
 

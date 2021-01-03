@@ -1,9 +1,14 @@
-#       _____ _           _            
-#      / ____| |         | |           
-#     | |    | |_   _ ___| |_ ___ _ __ 
-#     | |    | | | | / __| __/ _ \ '__|
-#     | |____| | |_| \__ \ ||  __/ |   
-#      \_____|_|\__,_|___/\__\___|_|   
+/*                 
+  _  __     _                          _               _____ _           _            
+ | |/ /    | |                        | |             / ____| |         | |           
+ | ' /_   _| |__   ___ _ __ _ __   ___| |_ ___  ___  | |    | |_   _ ___| |_ ___ _ __ 
+ |  <| | | | '_ \ / _ \ '__| '_ \ / _ \ __/ _ \/ __| | |    | | | | / __| __/ _ \ '__|
+ | . \ |_| | |_) |  __/ |  | | | |  __/ ||  __/\__ \ | |____| | |_| \__ \ ||  __/ |   
+ |_|\_\__,_|_.__/ \___|_|  |_| |_|\___|\__\___||___/  \_____|_|\__,_|___/\__\___|_|   
+                                                                                      
+                                                                                    */
+
+# https://registry.terraform.io/providers/rancher/rke/latest/docs/resources/cluster
 
 resource "rke_cluster" "this" {
 
@@ -17,14 +22,14 @@ resource "rke_cluster" "this" {
     for_each = local.node_data
 
     content {
-      user = "ubuntu"
-      role = nodes.value["role"]
-      address = nodes.value["public_ip"]
+      user             = "ubuntu"
+      role             = nodes.value["role"]
+      address          = nodes.value["public_ip"]
       internal_address = nodes.value["private_ip"]
-      ssh_key = base64decode(nodes.value["encoded_private_key"])
+      ssh_key          = base64decode(nodes.value["encoded_private_key"])
     }
   }
-  
+
   ############ #
   # Important! #
   # ############
@@ -45,7 +50,7 @@ resource "rke_cluster" "this" {
 # https://www.terraform.io/docs/providers/null/resource.html
 
 resource "null_resource" "is-cluster-ready" {
-  
+
   connection {
     type        = "ssh"
     host        = local.node_data[0].public_ip
@@ -70,7 +75,7 @@ resource "null_resource" "is-cluster-ready" {
 # https://www.terraform.io/docs/providers/null/resource.html
 
 resource "null_resource" "are_deployments_ready" {
-  
+
   connection {
     type        = "ssh"
     host        = local.node_data[0].public_ip

@@ -7,40 +7,21 @@
 #                    | |                  
 #                    |_|
 
-//output "nodes" {
-//  value = module.nodes
-//}
-//
-//
-//output "load_balancer_url" {
-//  value = aws_lb.nodes.dns_name
-//}
-//
-//output "ssh_commands" {
-//  value = [
-//    for node in module.nodes: {
-//      node = node.name  
-//      ssh_command = node.ssh_command
-//    }
-//  ] 
-//}
-//
-//output "export_kubeconfig_command" {
-//  value = module.multiple-node-cluster.export_kubeconfig_command
-//}
-//
-//output "kubectl_get_nodes_kubeconfig_command" {
-//  value = module.multiple-node-cluster.kubectl_get_nodes_kubeconfig_command
-//}
-//
-//output "kubectl_get_all_pods_kubeconfig_command" {
-//  value = module.multiple-node-cluster.kubectl_get_all_pods_kubeconfig_command
-//}
-//
-//output "bucket_name" {
-//  value = local.bucket_name
-//}
+output "export_kubeconfig_command" {
+  value = module.multiple-node-cluster.export_kubeconfig_command
+}
 
+output "kubectl_get_nodes_kubeconfig_command" {
+  value = module.multiple-node-cluster.kubectl_get_nodes_kubeconfig_command
+}
+
+output "kubectl_get_all_pods_kubeconfig_command" {
+  value = module.multiple-node-cluster.kubectl_get_all_pods_kubeconfig_command
+}
+
+output "bucket_name" {
+  value = local.bucket_name
+}
 
 output "node_data" {
   value = module.multiple-node-cluster.node_data
@@ -51,5 +32,5 @@ output "ssh_commands" {
 }
 
 output "network-load_balancer_url" {
-  value = module.multiple-node-cluster.network-load_balancer_url
+  value = module.multiple-node-cluster.network_load_balancer_url
 }

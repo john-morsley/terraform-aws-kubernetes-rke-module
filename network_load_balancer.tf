@@ -1,21 +1,12 @@
-#      _   _      _                      _    
-#     | \ | |    | |                    | |   
-#     |  \| | ___| |___      _____  _ __| | __
-#     | . ` |/ _ \ __\ \ /\ / / _ \| '__| |/ /
-#     | |\  |  __/ |_ \ V  V / (_) | |  |   < 
-#     |_| \_|\___|\__| \_/\_/ \___/|_|  |_|\_\
-#           _                     _                         
-#          | |                   | |                           
-#          | |     ___   __ _  __| |
-#          | |    / _ \ / _` |/ _` |
-#          | |___| (_) | (_| | (_| |
-#          |______\___/ \__,_|\__,_|
-#                ____        _                           
-#               |  _ \      | |                          
-#               | |_) | __ _| | __ _ _ __   ___ ___ _ __ 
-#               |  _ < / _` | |/ _` | '_ \ / __/ _ \ '__|
-#               | |_) | (_| | | (_| | | | | (_|  __/ |   
-#               |____/ \__,_|_|\__,_|_| |_|\___\___|_|   
+/*
+ _   _      _                      _      _                     _   ____        _
+| \ | |    | |                    | |    | |                   | | |  _ \      | |
+|  \| | ___| |___      _____  _ __| | __ | |     ___   __ _  __| | | |_) | __ _| | __ _ _ __   ___ ___ _ __
+| . ` |/ _ \ __\ \ /\ / / _ \| '__| |/ / | |    / _ \ / _` |/ _` | |  _ < / _` | |/ _` | '_ \ / __/ _ \ '__|
+| |\  |  __/ |_ \ V  V / (_) | |  |   <  | |___| (_) | (_| | (_| | | |_) | (_| | | (_| | | | | (_|  __/ |
+|_| \_|\___|\__| \_/\_/ \___/|_|  |_|\_\ |______\___/ \__,_|\__,_| |____/ \__,_|_|\__,_|_| |_|\___\___|_|
+
+                                                                                                          */
 
 # https://www.terraform.io/docs/providers/aws/r/lb.html
 
@@ -28,22 +19,22 @@ resource "aws_lb" "node-nlb" {
   enable_cross_zone_load_balancing = true
 
   enable_deletion_protection = false
-  
+
   depends_on = [
     module.nodes
   ]
-  
+
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group
 
 resource "aws_lb_target_group" "http" {
-  
+
   name     = "http-tg"
   port     = 80
   protocol = "TCP"
   vpc_id   = var.vpc_id
-  
+
 }
 
 resource "aws_lb_target_group" "https" {
@@ -52,26 +43,25 @@ resource "aws_lb_target_group" "https" {
   port     = 443
   protocol = "TCP"
   vpc_id   = var.vpc_id
-  
+
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group_attachment
 
 resource "aws_lb_target_group_attachment" "http" {
-  
+
   count = length(local.node_data)
-  
+
   target_group_arn = aws_lb_target_group.http.arn
   target_id        = module.nodes[count.index].id
   port             = 80
-  
-}
 
+}
 
 resource "aws_lb_target_group_attachment" "https" {
 
   count = length(local.node_data)
-  
+
   target_group_arn = aws_lb_target_group.https.arn
   target_id        = module.nodes[count.index].id
   port             = 443
@@ -81,7 +71,7 @@ resource "aws_lb_target_group_attachment" "https" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener
 
 resource "aws_lb_listener" "http" {
-  
+
   load_balancer_arn = aws_lb.node-nlb.arn
   port              = "80"
   protocol          = "TCP"
@@ -90,7 +80,7 @@ resource "aws_lb_listener" "http" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.http.arn
   }
-  
+
 }
 
 resource "aws_lb_listener" "https" {

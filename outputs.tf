@@ -1,11 +1,12 @@
-#     ____        _               _       
-#    / __ \      | |             | |      
-#   | |  | |_   _| |_ _ __  _   _| |_ ___ 
-#   | |  | | | | | __| '_ \| | | | __/ __|
-#   | |__| | |_| | |_| |_) | |_| | |_\__ \
-#    \____/ \__,_|\__| .__/ \__,_|\__|___/
-#                    | |                  
-#                    |_|                  
+/*
+  ____        _               _       
+ / __ \      | |             | |      
+| |  | |_   _| |_ _ __  _   _| |_ ___ 
+| |  | | | | | __| '_ \| | | | __/ __|
+| |__| | |_| | |_| |_) | |_| | |_\__ \
+ \____/ \__,_|\__| .__/ \__,_|\__|___/
+                 | |                  
+                 |_|                */
 
 output "export_kubeconfig_command" {
   value = "export KUBECONFIG=k8s/kubeconfig.yaml"
@@ -37,8 +38,8 @@ output "node_data" {
 
 output "ssh_commands" {
   value = [
-    for node in module.nodes: {
-      node = node.name
+    for node in module.nodes : {
+      node        = node.name
       ssh_command = node.ssh_command
     }
   ]
@@ -50,4 +51,8 @@ output "network_load_balancer_url" {
 
 output "network_load_balancer_zone_id" {
   value = aws_lb.node-nlb.zone_id
+}
+
+output "cluster_id" {
+  value = rke_cluster.this.id
 }
